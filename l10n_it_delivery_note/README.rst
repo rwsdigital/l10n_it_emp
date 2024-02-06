@@ -210,16 +210,10 @@ promote its widespread use.
 .. |maintainer-MarcoCalcagni| image:: https://github.com/MarcoCalcagni.png?size=40px
     :target: https://github.com/MarcoCalcagni
     :alt: MarcoCalcagni
-.. |maintainer-aleuffre| image:: https://github.com/aleuffre.png?size=40px
-    :target: https://github.com/aleuffre
-    :alt: aleuffre
-.. |maintainer-renda-dev| image:: https://github.com/renda-dev.png?size=40px
-    :target: https://github.com/renda-dev
-    :alt: renda-dev
 
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-MarcoCalcagni| |maintainer-aleuffre| |maintainer-renda-dev| 
+|maintainer-MarcoCalcagni| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note>`_ project on GitHub.
 
