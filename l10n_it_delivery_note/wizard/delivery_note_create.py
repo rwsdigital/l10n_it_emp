@@ -93,20 +93,36 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
                 sale_order_id
                 and sale_order_id.default_transport_condition_id.id
                 or self.partner_id.default_transport_condition_id.id
-                or self.type_id.default_transport_condition_id.id,
-                "goods_appearance_id": sale_order_id
+                or self.type_id.default_transport_condition_id.id
+            ),
+            "goods_appearance_id": (
+                sale_order_id
                 and sale_order_id.default_goods_appearance_id.id
                 or self.partner_id.default_goods_appearance_id.id
-                or self.type_id.default_goods_appearance_id.id,
-                "transport_reason_id": sale_order_id
+                or self.type_id.default_goods_appearance_id.id
+            ),
+            "transport_reason_id": (
+                sale_order_id
                 and sale_order_id.default_transport_reason_id.id
                 or self.partner_id.default_transport_reason_id.id
-                or self.type_id.default_transport_reason_id.id,
-                "transport_method_id": sale_order_id
+                or self.type_id.default_transport_reason_id.id
+            ),
+            "transport_method_id": (
+                sale_order_id
                 and sale_order_id.default_transport_method_id.id
                 or self.partner_id.default_transport_method_id.id
-                or self.type_id.default_transport_method_id.id,
-            }
+                or self.type_id.default_transport_method_id.id
+            ),
+        }
+
+    def confirm(self):
+        self.check_compliance(self.selected_picking_ids)
+
+        sale_order_ids = self.mapped("selected_picking_ids.sale_id")
+        sale_order_id = sale_order_ids and sale_order_ids[0] or self.env["sale.order"]
+
+        delivery_note = self.env["stock.delivery.note"].create(
+            self._prepare_delivery_note_vals(sale_order_id)
         )
 
         self.selected_picking_ids.write({"delivery_note_id": delivery_note.id})
