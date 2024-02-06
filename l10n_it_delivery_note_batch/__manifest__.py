@@ -8,16 +8,10 @@
     "summary": "Crea i DDT partendo da gruppi di prelievi",
     "author": "Marco Colombo, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy" "l10n_it_delivery_note_batch",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": [
-        "MarcoCalcagni",
-        "TheMule71",
-        "aleuffre",
-        "PicchiSeba",
-        "renda-dev",
-    ],
+    "maintainers": ["MarcoCalcagni", "TheMule71"],
     "depends": [
         "stock_picking_batch",
         "l10n_it_delivery_note",
