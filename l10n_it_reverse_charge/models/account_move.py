@@ -130,7 +130,10 @@ class AccountMove(models.Model):
         is_zero = self.currency_id.is_zero
         for move_line in self.line_ids:
             field_value = getattr(move_line, line_field)
-            if not is_zero(field_value):
+            if not is_zero(field_value) and move_line.account_internal_type in (
+                "receivable",
+                "payable",
+            ):
                 break
         else:
             raise UserError(
@@ -255,7 +258,7 @@ class AccountMove(models.Model):
         line_to_reconcile = self._rc_get_move_line_to_reconcile()
         payment_debit_line_data = self.rc_debit_line_vals(
             line_to_reconcile.account_id,
-            payment_credit_line_data["credit"],
+            payment_credit_line_data["credit"] or payment_credit_line_data["debit"],
         )
         rc_payment_data["line_ids"] = [
             (0, 0, payment_debit_line_data),
